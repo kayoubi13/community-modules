@@ -61,3 +61,9 @@ then, add the following to your outputs:
         # ...
       };
 ```
+
+# future plans
+
+as this component of `finix` matures, and more modules are added, we will eventually create a `stable` branch which only contains modules that are confirmed to be working and battle tested by the maintainers. when this happens, the `main` branch will be what is used for rapid and breaking changes that may or may not contain untested nix code. while we do try and review as many modules as we can, not all maintainers have the exact use cases that these modules were designed for, so we will have limited field testing on them.
+
+with that being said, if there is something you think is missing from `finix` that you would like to see ported from `NixOS`, or something from any other OS that is not present in either `finix` nor `NixOS`, feel free to open a PR and add it here!
