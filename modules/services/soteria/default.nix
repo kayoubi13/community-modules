@@ -28,11 +28,20 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
 
+    assertions = [
+      {
+        assertion = config.services.elogind.enable && config.services.polkit.enable;
+        message = "`services.elogind.enable` and `services.polkit.enable must both be set to true for soteria to function.";
+      }
+    ];
+
     finit.services.polkit-soteria = {
       description = "Soteria, Polkit authentication agent for any desktop environment";
-      runlevels = "2345";
-      conditions = "service/syslogd/ready";
+      runlevels = "34";
+      conditions = "service/polkit/ready";
       command = lib.getExe cfg.package;
+      log = true;
+      nohup = true;
     };
   };
 }
