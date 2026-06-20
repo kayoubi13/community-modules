@@ -20,7 +20,7 @@ in
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.fastfetch.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [
+        patches = (old.patches or [ ]) ++ [
           ./fastfetch.patch
         ];
       });
