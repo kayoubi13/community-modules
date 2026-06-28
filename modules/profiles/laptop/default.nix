@@ -10,7 +10,6 @@ let
 in
 {
   imports = with modules; [
-    ../../programs/pipewire
     atd
     bash
     bluetooth
@@ -27,6 +26,7 @@ in
     networkmanager
     nftables
     nix-daemon
+    pipewire
     polkit
     power-profiles-daemon
     regreet
@@ -35,6 +35,7 @@ in
     sysklogd
     udisks2
     upower
+    wireplumber
     zzz
   ];
 
@@ -92,13 +93,6 @@ in
       "cpu.weight" = 100;
     };
 
-    # TODO: configure this via some sort of option in finix
-    environment.etc."security/limits.conf".text = ''
-      @audio   -   rtprio     95
-      @audio   -   nice       -19
-      @audio   -   memlock    4194304
-    '';
-
     environment.systemPackages = [
       pkgs.nixos-rebuild-ng
     ];
@@ -115,6 +109,8 @@ in
     hardware.graphics.enable = true;
 
     programs.pipewire.enable = true;
+    programs.wireplumber.enable = true;
+
     programs.bash.enable = true;
     programs.brightnessctl.enable = lib.mkDefault true;
     programs.limine.enable = true;
