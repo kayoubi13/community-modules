@@ -16,4 +16,4 @@ let
     ]
   );
 in
-programModules // serviceModules // profileModules
+programModules // serviceModules // profileModules // { dinit = ./dinit; }
